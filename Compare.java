@@ -26,7 +26,7 @@ public class Compare {
         int compare_time1;
         int compare_time2;
 
-        for (int i = 0; i < riders.size(); i++){
+        for (int i = 1; i < riders.size(); i++){
             //Is someone a driver?
             if (rider_to_compare.get_is_driver() || riders.get(i).get_is_driver()){
                 //Is Rider to compare <= array value?
@@ -35,13 +35,15 @@ public class Compare {
                 // Is time less than 30 minutes?
                 if (compare_time1 <= 30 && compare_time2 <= 30){
                     set_distance_between_addresses(compare_address(rider_to_compare, riders.get(i)));
-                    if(get_distance_between_addresses() <= rider_to_compare.get_driver_distance_preference()
-                            && get_distance_between_addresses() <= riders.get(i).get_driver_distance_preference()){
-                        //Setting return value to name of match.
-                        return_value = riders.get(i).get_name();
-                        //Setting distance between addresses to member value.
-                        this.distance_between_addresses = compare_address(rider_to_compare, riders.get(i));
-                        return return_value;
+                    if (rider_to_compare.get_day().toUpperCase().equals(riders.get(i).get_day().toUpperCase())) {
+                        if (get_distance_between_addresses() <= rider_to_compare.get_driver_distance_preference()
+                                && get_distance_between_addresses() <= riders.get(i).get_driver_distance_preference()) {
+                            //Setting return value to name of match.
+                            return_value = riders.get(i).get_name();
+                            //Setting distance between addresses to member value.
+                            //this.distance_between_addresses = compare_address(rider_to_compare, riders.get(i));
+                            return return_value;
+                        }
                     }
                 } else {
                     return_value = "NULL";
@@ -75,12 +77,12 @@ public class Compare {
         in.close();
 
         String mydata = mtrx.toString();
-        int distance = 0;
+        double distance = 0;
         Pattern pattern = Pattern.compile("(?<=distance\" : \\{                  \"text\" : \")(.*)(?= mi\")");
         Matcher matcher = pattern.matcher(mydata);
         if (matcher.find())
         {
-            distance = Integer.parseInt(matcher.group(1));
+            distance = Double.parseDouble(matcher.group(1));
         }
         return distance;
     }
