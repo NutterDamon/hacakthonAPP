@@ -31,7 +31,7 @@ public class Rider {
         this.time_return_minute = time_return_minute;
         this.time_return = time_return_hour * 60 + time_return_minute;
     }
-    public void set_address(String address) {
+    public void set_address(String address1) {
         this.address = address;
     }
     public void set_time_leave(int time_leave_hour, int time_leave_minute) {
@@ -46,7 +46,7 @@ public class Rider {
     public void set_driver_distance_preference(int set_driver_distance_preference) {
         this.driver_distance_preference = driver_distance_preference;
     }
-    public void set_is_driver(bool is_driver){
+    public void set_is_driver(boolean is_driver){
         this.is_driver = is_driver;
     }
     //Get functions-------------------------------------------------------
