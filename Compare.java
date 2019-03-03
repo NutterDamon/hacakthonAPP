@@ -1,4 +1,8 @@
-
+import java.net.*;
+import java.io.*;
+import java.lang.StringBuilder;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 public class Compare {
   ArrayList<Rider> riders = new Arraylist();
   Rider rider_to_compare;
@@ -47,6 +51,34 @@ public class Compare {
   }
   // Return the miles between address 1 and address 2
   public int compare_address(Rider r1, Rider r2){
-    
+    String mtrx_link = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=";
+    mtrx_link += r1.get_address();
+    mtrx_link += "&destinations=";
+    mtrx_link += r2.get_address();
+    mtrx_link += "&key=AIzaSyDxY8VVzoP5CqY9WDdLzGbsrYwgNapjjKg";
+    URL dst_matrix = new URL(mtrx_link);
+    URLConnection yc = dst_matrix.openConnection();
+    BufferedReader in = new BufferedReader(new InputStreamReader(
+      yc.getInputStream()));
+
+    String inputLine;
+    StringBuilder mtrx = new StringBuilder();
+    int line = 0;
+    while ((inputLine = in.readLine()) != null)
+    {
+
+      mtrx.append(inputLine);
+    } 
+    in.close();
+
+    String mydata = mtrx.toString();
+    int distance;
+    Pattern pattern = Pattern.compile("(?<=distance\" : \\{                  \"text\" : \")(.*)(?= mi\")");
+    Matcher matcher = pattern.matcher(mydata);
+    if (matcher.find())
+    {
+      distance = Integer.parseInt(matcher.group(1));
+    }
+    return distance;
   }
 }
