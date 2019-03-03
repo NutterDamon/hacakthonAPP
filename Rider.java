@@ -9,7 +9,7 @@ public class Rider {
     int time_return;
     String day;
     int driver_distance_preference;
-    bool is_driver;
+    boolean is_driver;
     
     Rider() {
         name = "";
@@ -20,7 +20,7 @@ public class Rider {
         time_return_minute = 0;
         day = "";
         driver_distance_preference = 0;
-        bool is_driver = false;
+        is_driver = false;
     }
     // Set functions -----------------------------------------------------------------------------
     public void set_name(String name) {
