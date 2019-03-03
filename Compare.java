@@ -36,9 +36,9 @@ public class Compare {
         if (compare_time1 <= 30 && compare_time2 <= 30){
           set_distance_between_addresses(compare_address(rider_to_compare, riders.get(i)));
           if(get_distance_between_addresses() <= rider_to_compare.get_driver_distance_preference()
-          && get_distance_between_addresses() <= riders.get(i).get_driver_distance_preference())){
+          && get_distance_between_addresses() <= riders.get(i).get_driver_distance_preference()){
             //Setting return value to name of match.
-            return_value = rider.get(i).get_name;
+            return_value = riders.get(i).get_name();
             //Setting distance between addresses to member value.
             this.distance_between_addresses = compare_address(rider_to_compare, riders.get(i));
             return return_value;
