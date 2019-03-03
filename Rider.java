@@ -19,7 +19,7 @@ public class Rider {
         time_return_hour = 0;
         time_return_minute = 0;
         day = "";
-        driver_distance_preference = 0;
+        driver_distance_preference = 100;
         is_driver = false;
     }
     // Set functions -----------------------------------------------------------------------------
