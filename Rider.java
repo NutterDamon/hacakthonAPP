@@ -9,7 +9,7 @@ public class Rider
 
     Rider()
     {
-        name = "";
+        name = "Damon";
         location_start = "";
         location_end = "";
         time_leave = "";
