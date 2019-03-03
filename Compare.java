@@ -35,6 +35,7 @@ public class Compare {
     }
     return return_value;
   }
+  // Return the distance between address 1 and address 2
   public int compare_address(Rider r1, Rider r2){
     
   }
