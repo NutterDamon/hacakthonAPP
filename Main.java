@@ -5,52 +5,61 @@
 //     able to access the carpool lanes around the freeway.
 
 import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
     public static void main(String[] args)
     {
-	    // Create Rider object
-        Rider rider = new Rider();
+        // Create a Vector
+        ArrayList<Rider> list = new ArrayList();
 
+        // Create scanner to take input from users
+        Scanner scan = new Scanner(System.in);
 
         // Declare variables
         String name;
-        String location_start;
-        String location_end;
-        String time_start;
+        String address;
+        int hour;
+        int minutes;
         String time_end;
         String day;
 
+        int i = 0;
 
-        Scanner scan = new Scanner(System.in);
+        Rider[] array = new Rider[2];
 
-        System.out.print("Enter your name: ");
-        name = scan.nextLine();
-        rider.set_name(name);
+        while(i != 2)
+        {
+            // Create Rider object
+            Rider rider = new Rider();
 
-        System.out.print("Enter your starting point: ");
-        location_start = scan.nextLine();
-        rider.set_location_start(location_start);
+            // Create a LinkedList
+            //LinkedList<Rider> list = new LinkedList<Rider>();
 
-        System.out.print("Enter your destination: ");
-        location_end = scan.nextLine();
-        rider.set_location_end(location_end);
+            System.out.print("Enter your name: ");
+            name = scan.nextLine();
+            rider.set_name(name);
 
-        System.out.print("Enter your time of departure: ");
-        time_start = scan.nextLine();
-        rider.set_time_leave(time_start);
+            System.out.print("Enter your address: ");
+            address = scan.nextLine();
+            rider.set_location_start(address);
 
-        System.out.print("Enter your expected time of arrival: ");
-        time_end = scan.nextLine();
-        rider.set_time_arrive(time_end);
+            System.out.print("Enter the day: ");
+            day = scan.nextLine();
+            rider.set_day(day);
 
-        System.out.print("Enter the day of your trip: ");
-        day = scan.nextLine();
-        rider.set_day(day);
+            //list.add(rider);
+            list.add(rider);
 
-        System.out.println("\nThe rider's information:");
-        rider.print();
+            System.out.println();
+            i++;
+        }
+
+        for (int j = 0; j < list.size(); j++)
+        {
+            list.get(j).print();
+        }
 
 
 
