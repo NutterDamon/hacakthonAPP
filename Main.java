@@ -18,23 +18,28 @@ public class Main {
         Scanner in = new Scanner(System.in);
 
         // Declare variables
-        String name;      // Name of user
-        String street_number;   // Address of user
+        String name;
+        String street_number;
         String street_name;
         String city;
         String state;
         String address;
-        int hour;         //
+        int hour;
         int minutes;
         String day;       // Day of trip
         int driver;       // Determines whether the user is a driver
         int i = 0;
-        int distance;
+        double distance;     // Preferred radius distance for driver
 
-        while(i != 2)
+
+
+        while(i++ != 2)
         {
+
             // Create Rider object
             Rider rider = new Rider();
+
+
 
             // Prompt the user for a name
             System.out.print("Enter your name: ");
@@ -53,9 +58,12 @@ public class Main {
             state = in.nextLine();
             rider.set_address(street_number, street_name, city, state);
 
+            // Ask user whether he or she will be driving
             System.out.print("\nAre you a driver?(Enter 1 for Yes): ");
             driver = in.nextInt();
             rider.set_is_driver(driver == 1);
+
+            // If user will be drving, then ask for radius distance preference
             if (rider.get_is_driver())
             {
                 System.out.print("Enter your distance preference(In miles): ");
@@ -63,25 +71,60 @@ public class Main {
                 rider.set_driver_distance_preference(distance);
             }
 
-            // Prompt user for day
+            // Prompt user for day of trip
             in.nextLine();
             System.out.print("\nEnter the day: ");
             day = in.nextLine();
             rider.set_day(day);
 
-            //list.add(rider);
+            // Prompt user for time of trip
+            System.out.println("Enter the time of departure");
+            System.out.print("Enter the hour: ");
+            hour = in.nextInt();
+            System.out.print("Enter the minutes: ");
+            minutes = in.nextInt();
+            rider.set_time_leave(hour, minutes);
+
+            System.out.println("Enter the time of return");
+            System.out.print("Enter the hour: ");
+            hour = in.nextInt();
+            System.out.print("Enter the minutes: ");
+            minutes = in.nextInt();
+            in.nextLine();
+            rider.set_time_return(hour, minutes);
+
+            // Add the Rider object into an ArrayList of Rider objects
             list.add(rider);
 
             System.out.println();
-            i++;
         }
 
         System.out.println();
         System.out.println();
-        for (int j = 0; j < list.size(); j++)
-        {
-            list.get(j).print();
-        }
+//        for (int j = 0; j < list.size(); j++)
+//        {
+//            list.get(j).print();
+//            System.out.println();
+//        }
 
+
+        // Create Compare object to compare the information of the riders
+        // and find a match between them
+        Compare comp = new Compare(list.get(0), list);
+
+        try {
+            if (comp.find_match() != "NULL") {
+                System.out.println("There was a match!");
+                System.out.println("The following is the information of your match:");
+                System.out.println("Name: " + comp.find_match());
+                System.out.println(comp.find_match() + " lives " + comp.get_distance_between_addresses()
+                        + " miles away from you.");
+            } else
+                System.out.println("Sorry, there was no match for your specific settings.");
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
 }
+
