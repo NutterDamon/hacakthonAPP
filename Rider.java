@@ -5,6 +5,8 @@ public class Rider {
     int time_leave_minute;
     int time_return_hour;
     int time_return_minute;
+    int time_leave;
+    int time_return;
     String day;
     int driver_distance_preference;
     bool is_driver;
@@ -19,7 +21,6 @@ public class Rider {
         day = "";
         driver_distance_preference = 0;
         bool is_driver = false;
-        
     }
     // Set functions -----------------------------------------------------------------------------
     public void set_name(String name) {
@@ -28,6 +29,7 @@ public class Rider {
     public void set_time_return(int time_return_hour, int time_return_minute){
         this.time_return_hour = time_return_hour;
         this.time_return_minute = time_return_minute;
+        this.time_return = time_return_hour * 60 + time_return_minute;
     }
     public void set_address(String address) {
         this.address = address;
@@ -35,6 +37,7 @@ public class Rider {
     public void set_time_leave(int time_leave_hour, int time_leave_minute) {
         this.time_leave_hour = time_leave_hour;
         this.time_leave_minute = time_leave_minute;
+        this.time_leave = time_leave_hour * 60 + time_leave_minute;
     }
     
     public void set_day(String day) {
