@@ -57,7 +57,12 @@ public class Rider {
     public String get_name() {
         return name;
     }
-    
+    public int get_time_leave(){
+      return time_leave;
+    }
+    public int get_time_return(){
+      return time_return;
+    }
     public int get_driver_distance_preference(){
         return driver_distance_preference;
     }
