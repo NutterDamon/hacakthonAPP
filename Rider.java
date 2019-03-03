@@ -16,7 +16,7 @@ public class Rider {
         address = "";
         time_leave_hour = 0;
         time_leave_minute = 0;
-        time_return_hour = "";
+        time_return_hour = 0;
         time_return_minute = 0;
         day = "";
         driver_distance_preference = 0;
@@ -31,8 +31,12 @@ public class Rider {
         this.time_return_minute = time_return_minute;
         this.time_return = time_return_hour * 60 + time_return_minute;
     }
-    public void set_address(String address1) {
-        this.address = address;
+    public void set_address(String street_number, String street_name, String city, String state) {
+        address = street_number + "+";
+        street_name = street_name.replaceAll(" ", "+");
+        address = address + street_name + ",";
+        city = city.replaceAll(" ", "+");
+        address = address + city + "," + state;
     }
     public void set_time_leave(int time_leave_hour, int time_leave_minute) {
         this.time_leave_hour = time_leave_hour;
@@ -72,11 +76,19 @@ public class Rider {
     public String get_day(){
         return day;
     }
+    public String get_address(){
+        return address;
+    }
+    public boolean get_is_driver(){
+        return is_driver;
+    }
     public void print() {
         System.out.println("Name: " + name);
         System.out.println("Location Start: " + address);
         System.out.println("Time of Departure: " + time_leave);
         System.out.println("Expected time of arrival: " + time_arrive);
         System.out.println("Day: " + day);
+        if (is_driver)
+            System.out.println("Distance Preference: " + driver_distance_preference);
     }
 }
