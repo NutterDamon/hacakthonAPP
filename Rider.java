@@ -1,90 +1,77 @@
-public class Rider
-{
-    String location_start;
-    String location_end;
-    String time_leave;
-    int time_return;
-    String time_arrive;
+public class Rider {
     String name;
+    String address;
+    int time_leave_hour;
+    int time_leave_minute;
+    int time_return_hour;
+    int time_return_minute;
     String day;
-    bool no_smoke;
     int driver_distance_preference;
     bool is_driver;
     
-    Rider()
-    {
+    Rider() {
         name = "";
-        location_start = "";
-        location_end = "";
-        time_leave = "";
-        time_arrive = "";
-        time_return = 0;
+        address = "";
+        time_leave_hour = 0;
+        time_leave_minute = 0;
+        time_return_hour = "";
+        time_return_minute = 0;
         day = "";
-        no_smoke = false;
         driver_distance_preference = 0;
         bool is_driver = false;
         
     }
     // Set functions -----------------------------------------------------------------------------
-    public void set_name(String name)
-    {
+    public void set_name(String name) {
         this.name = name;
     }
-    public void set_time_return(String time_return){
-        this.time_return = time_return;
+    public void set_time_return(int time_return_hour, int time_return_minute){
+        this.time_return_hour = time_return_hour;
+        this.time_return_minute = time_return_minute;
     }
-    public void set_location_start(String location_start)
-    {
-        this.location_start = location_start;
+    public void set_address(String address) {
+        this.address = address;
     }
-
-    public void set_location_end(String location_end)
-    {
-        this.location_end = location_end;
+    public void set_time_leave(int time_leave_hour, int time_leave_minute) {
+        this.time_leave_hour = time_leave_hour;
+        this.time_leave_minute = time_leave_minute;
     }
-
-    public void set_time_leave(String time_leave)
-    {
-        this.time_leave = time_leave;
-    }
-
-    public void set_time_arrive(String time_arrive)
-    {
-        this.time_arrive = time_arrive;
-    }
-
-    public void set_day(String day)
-    {
+    
+    public void set_day(String day) {
         this.day = day;
-    }
-    public void set_no_smoking (bool no_smoke) {
-        this.no_smoke = no_smoke;
     }
     public void set_driver_distance_preference(int set_driver_distance_preference) {
         this.driver_distance_preference = driver_distance_preference;
     }
+    public void set_is_driver(bool is_driver){
+        this.is_driver = is_driver;
+    }
     //Get functions-------------------------------------------------------
-    public String get_name()
-    {
+    public String get_name() {
         return name;
     }
+    
     public int get_driver_distance_preference(){
         return driver_distance_preference;
     }
-    public int get_time_return(){
-        return time_return;
+    public int get_time_return_hour(){
+        return time_return_hour;
     }
-    public int get_time_leave(){
-        return time_leave;
+    public int get_time_return_minute(){
+        return time_return_minute;
+    }
+    public int get_time_leave_hour(){
+        return time_leave_hour;
+    }
+    public int get_time_leave_minute(){
+        return time_leave_minute;
     }
     public String get_day(){
         return day;
     }
-    public void print()
-    {
+    public void print() {
         System.out.println("Name: " + name);
-        System.out.println("Location Start: " + location_start);
-        System.out.println("Location End: " + location_end);
+        System.out.println("Location Start: " + address);
         System.out.println("Time of Departure: " + time_leave);
         System.out.println("Expected time of arrival: " + time_arrive);
         System.out.println("Day: " + day);
