@@ -11,42 +11,62 @@ public class Main {
 
     public static void main(String[] args)
     {
-        // Create a Vector
+        // Create an ArrayList to hold all objects
         ArrayList<Rider> list = new ArrayList();
 
         // Create scanner to take input from users
-        Scanner scan = new Scanner(System.in);
+        Scanner in = new Scanner(System.in);
 
         // Declare variables
-        String name;
+        String name;      // Name of user
+        String street_number;   // Address of user
+        String street_name;
+        String city;
+        String state;
         String address;
-        int hour;
+        int hour;         //
         int minutes;
-        String time_end;
-        String day;
-
+        String day;       // Day of trip
+        int driver;       // Determines whether the user is a driver
         int i = 0;
-
-        Rider[] array = new Rider[2];
+        int distance;
 
         while(i != 2)
         {
             // Create Rider object
             Rider rider = new Rider();
 
-            // Create a LinkedList
-            //LinkedList<Rider> list = new LinkedList<Rider>();
-
+            // Prompt the user for a name
             System.out.print("Enter your name: ");
-            name = scan.nextLine();
+            name = in.nextLine();
             rider.set_name(name);
 
-            System.out.print("Enter your address: ");
-            address = scan.nextLine();
-            rider.set_location_start(address);
+            // Prompt user for address
+            System.out.println("\nEnter your address");
+            System.out.print("Street Number: ");
+            street_number = in.nextLine();
+            System.out.print("Street Name: ");
+            street_name = in.nextLine();
+            System.out.print("City: ");
+            city = in.nextLine();
+            System.out.print("State: ");
+            state = in.nextLine();
+            rider.set_address(street_number, street_name, city, state);
 
-            System.out.print("Enter the day: ");
-            day = scan.nextLine();
+            System.out.print("\nAre you a driver?(Enter 1 for Yes): ");
+            driver = in.nextInt();
+            rider.set_is_driver(driver == 1);
+            if (rider.get_is_driver())
+            {
+                System.out.print("Enter your distance preference(In miles): ");
+                distance = in.nextInt();
+                rider.set_driver_distance_preference(distance);
+            }
+
+            // Prompt user for day
+            in.nextLine();
+            System.out.print("\nEnter the day: ");
+            day = in.nextLine();
             rider.set_day(day);
 
             //list.add(rider);
@@ -56,12 +76,12 @@ public class Main {
             i++;
         }
 
+        System.out.println();
+        System.out.println();
         for (int j = 0; j < list.size(); j++)
         {
             list.get(j).print();
         }
-
-
 
     }
 }
